@@ -1,0 +1,17 @@
+<div class="nav__container">
+  <h2 class="messages__title">Mensajes enviados por el usuario</h2>
+</div>
+<div class="chat__container">
+  <div class="chat__messagesContainer" id="chat__messagesContainer">
+    {{#each messages}}
+      <div class="message">
+        <span class="message__email">{{author}}:</span>
+        <span class="message__date">[{{date}}]<span>
+        <br>
+        <span class="message__text">Id del mensaje: {{_id}}</span>
+        <br>
+        <p class="message__text">Mensaje: {{message}}</p>
+      </div>
+    {{/each}}
+  </div>
+</div>
