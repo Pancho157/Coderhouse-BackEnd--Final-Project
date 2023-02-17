@@ -1,6 +1,8 @@
-# Product structure
+# Useful information
 
 ---
+
+Products structure:
 
     {
         "_id": String,
@@ -10,6 +12,16 @@
         "price": Int,
         "stock": Int,
     }
+
+- Hosting link: (replace for http://localhost:8080/)
+
+  - https://backend-coderhouse-francisco-muniz.onrender.com
+
+- It is a requirement that the queries be given the token as a query param (Given by login)
+
+  - GET type queries are available for all types of users
+
+  - POST, PUT, DELETE type queries are available only for admins
 
 ---
 
@@ -21,19 +33,17 @@
 
 ---
 
-        GET - http://localhost:8080/productos
+        GET - All - http://localhost:8080/productos?token=${token}
 
-Devuelve un array con todos los productos
+- Returns an array with all products
 
-        GET - http://localhost:8080/productos/:id
+      GET - By ID - http://localhost:8080/productos/:id?token=${token}
 
-Devuelve el producto con el id especificado
+- Returns the requested product (MongoId)
 
-El id es el asignado por MongoDB
+        GET - By Category - http://localhost:8080/productos/:category/categoria?token=${token}
 
-        GET - http://localhost:8080/productos/:category/categoria
-
-Devuelve un array con todos los productos que concuerden con la categoría solicitada
+- Returns an array with all products that match category #CapitalsMatters
 
 ---
 
@@ -41,17 +51,13 @@ Devuelve un array con todos los productos que concuerden con la categoría solic
 
 ---
 
-        POST - http://localhost:8080/productos
+        POST - http://localhost:8080/productos?token=${token}
 
-Genera un nuevo producto, siempre y cuando se le pasen los siguientes parámetros mediante el body de la request
+- Generates a new product
 
-    {
-        "title": String,
-        "thumbnail": String,
-        "category": String,
-        "price": Int,
-        "stock": Int,
-    }
+- Requires the following parameters within the body of the request
+
+  - { "title": String, "thumbnail": String, "category": String, "price": Int, "stock": Int }
 
 ---
 
@@ -59,11 +65,11 @@ Genera un nuevo producto, siempre y cuando se le pasen los siguientes parámetro
 
 ---
 
-        PUT - http://localhost:8080/productos
+        PUT - http://localhost:8080/productos?token=${token}
 
-Actualiza un producto, siempre y cuando se le pase el id del producto y alguna propiedad dentro del body de la request
+- Updates a product, as long as it is passed the product id and some property within the request body
 
-Ejemplo: { "id": String, "title": String }
+  - Ejemplo: { "id": String, "title": String }
 
 ---
 
@@ -71,11 +77,8 @@ Ejemplo: { "id": String, "title": String }
 
 ---
 
-        PUT - http://localhost:8080/productos/:id
+        PUT - http://localhost:8080/productos/:id?token=${token}
 
-Elimina un producto (siempre y cuando el producto espesificado exista) y devuelve la siguiente respuesta en caso de éxito:
+- Removes a product (as long as the specified product exists)
 
-{
-"acknowledged": true,
-"deletedCount": 1
-}
+  - Success response: { "acknowledged": true, "deletedCount": 1 }
